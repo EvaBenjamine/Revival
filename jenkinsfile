@@ -1,56 +1,31 @@
 pipeline {
     agent any
 
-    environment {
-        // Définir des variables d'environnement globales ici si nécessaire
-        GIT_REPO = 'https://github.com/EvaBenjamine/Revival.git'
-    }
-
     stages {
-        stage('Checkout') {
+        stage('Hello') {
             steps {
-                // Cloner le dépôt Git
-                git branch: 'main', url: GIT_REPO
+                echo 'Bonsoir tout le monde'
             }
         }
-        
         stage('Build') {
             steps {
-                script {
-                    // Ajoute ici les commandes pour construire ton projet
-                    // Par exemple, pour un projet Node.js, on pourrait faire :
-                    sh 'npm install'
-                }
+                echo 'Bonsoir tout le monde building'
             }
         }
-
-        stage('Test') {
-            steps {
-                script {
-                    // Ajoute ici les commandes pour exécuter tes tests
-                    // Exemple pour un projet Node.js
-                    sh 'npm test'
-                }
-            }
-        }
-
         stage('Deploy') {
             steps {
-                script {
-                    // Ajoute ici tes étapes pour déployer le projet
-                    // Exemple pour un déploiement sur un serveur distant via SSH
-                    sh 'scp -r * user@server:/path/to/deploy'
-                }
+                echo 'Bonsoir tout le monde deploying'
             }
         }
-    }
-
-    post {
-        success {
-            echo 'Build et déploiement réussis !'
+        stage('Test') {
+            steps {
+                echo 'Bonsoir tout le monde testing'
+            }
         }
-        failure {
-            echo 'Le build ou le déploiement a échoué.'
+        stage('Release') {
+            steps {
+                echo 'Bonsoir tout le monde Realinsing'
+            }
         }
     }
 }
